@@ -1,0 +1,30 @@
+version: "3.9"
+
+services:
+  backend:
+    build: .
+    container_name: rahman-shorts
+    ports:
+      - "8000:8000"
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - HOST=0.0.0.0
+      - PORT=8000
+      - UPLOAD_DIR=/app/uploads
+      - CLIP_DIR=/app/clips
+      - TEMP_DIR=/app/temp
+      - MAX_FILE_SIZE=2147483648
+      - MAX_CLIPS=20
+      - MAX_CLIP_DURATION=60
+      - DEFAULT_CLIP_DURATION=30
+      - CORS_ORIGINS=*
+    volumes:
+      - ./uploads:/app/uploads
+      - ./clips:/app/clips
+      - ./temp:/app/temp
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3

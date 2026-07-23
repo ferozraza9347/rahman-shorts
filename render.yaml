@@ -1,0 +1,31 @@
+services:
+  - type: web
+    name: rahman-shorts-api
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: PORT
+        value: 8000
+      - key: HOST
+        value: 0.0.0.0
+      - key: MAX_FILE_SIZE
+        value: "2147483648"
+      - key: MAX_CLIPS
+        value: "20"
+      - key: MAX_CLIP_DURATION
+        value: "60"
+      - key: DEFAULT_CLIP_DURATION
+        value: "30"
+      - key: CORS_ORIGINS
+        value: "*"
+      - key: PYTHONUNBUFFERED
+        value: "1"
+    disk:
+      name: clips-storage
+      mountPath: /app/clips
+      sizeGB: 1
+    healthCheckPath: /api/health
+    autoDeploy: true

@@ -1,0 +1,111 @@
+{
+  "templates": [
+    {
+      "id": "bold",
+      "name": "Bold Impact",
+      "style": {
+        "fontcolor": "#FFFFFF",
+        "fontsize": "48",
+        "box": "1",
+        "boxcolor": "#000000@0.7",
+        "boxborderw": "10",
+        "borderw": "3",
+        "bordercolor": "#000000"
+      }
+    },
+    {
+      "id": "neon",
+      "name": "Neon Glow",
+      "style": {
+        "fontcolor": "#00FF88",
+        "fontsize": "48",
+        "borderw": "4",
+        "bordercolor": "#00FF88",
+        "shadowx": "3",
+        "shadowy": "3",
+        "shadowcolor": "#00FF88@0.5"
+      }
+    },
+    {
+      "id": "minimal",
+      "name": "Clean Minimal",
+      "style": {
+        "fontcolor": "#FFFFFF",
+        "fontsize": "42",
+        "borderw": "1",
+        "bordercolor": "#333333"
+      }
+    },
+    {
+      "id": "box",
+      "name": "Color Box",
+      "style": {
+        "fontcolor": "#FFFFFF",
+        "fontsize": "44",
+        "box": "1",
+        "boxcolor": "#FF6B35@0.9",
+        "boxborderw": "8"
+      }
+    },
+    {
+      "id": "gradient",
+      "name": "Gradient Text",
+      "style": {
+        "fontcolor": "#FFD700",
+        "fontsize": "48",
+        "borderw": "3",
+        "bordercolor": "#FF6B35",
+        "shadowx": "2",
+        "shadowy": "2",
+        "shadowcolor": "#000000@0.6"
+      }
+    },
+    {
+      "id": "outline",
+      "name": "Thick Outline",
+      "style": {
+        "fontcolor": "#FFFFFF",
+        "fontsize": "50",
+        "borderw": "6",
+        "bordercolor": "#000000"
+      }
+    },
+    {
+      "id": "shadow",
+      "name": "Deep Shadow",
+      "style": {
+        "fontcolor": "#FFFFFF",
+        "fontsize": "46",
+        "shadowx": "5",
+        "shadowy": "5",
+        "shadowcolor": "#000000@0.8"
+      }
+    },
+    {
+      "id": "glow",
+      "name": "Purple Glow",
+      "style": {
+        "fontcolor": "#E0B0FF",
+        "fontsize": "48",
+        "borderw": "3",
+        "bordercolor": "#A855F7",
+        "shadowx": "0",
+        "shadowy": "0",
+        "shadowcolor": "#A855F7@0.4"
+      }
+    },
+    {
+      "id": "strike",
+      "name": "Strike Through",
+      "style": {
+        "fontcolor": "#FFFFFF",
+        "fontsize": "44",
+        "borderw": "2",
+        "bordercolor": "#000000",
+        "box": "1",
+        "boxcolor": "#EF4444@0.3",
+        "boxborderw": "4"
+      }
+    }
+  ]
+}
