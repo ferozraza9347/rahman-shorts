@@ -316,7 +316,7 @@ async def process_video_job(job_id: str, source: str, is_url: bool, settings: di
         if is_url:
             success = await asyncio.to_thread(download_youtube, source, video_path)
             if not success:
-                raise Exception("Failed to download video. Check URL and try again.")
+                raise Exception("YouTube download failed. Try a different video or upload a file instead.")
         else:
             shutil.copy(source, video_path)
         if not video_path.exists():
