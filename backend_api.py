@@ -260,7 +260,7 @@ def find_viral_moments(transcript: list, video_duration: float, clip_count: int,
             score += 20
 
         # Number/score scoring
-        if re.search(r'\d+', segment["text"]:
+        if re.search(r'\d+', segment["text"]):
             score += 10
 
         # Length scoring (not too short, not too long)
