@@ -94,8 +94,8 @@ def get_video_info(video_path: Path) -> dict:
     if rc != 0:
         return {"duration": 0, "width": 1920, "height": 1080}
     try:
-        data = jsonloads(stdout)
-        streams = dataget("streams", [{}])[0]
+        data = json.loads(stdout)
+        streams = data.get("streams", [{}])[0]
         fmt = data.get("format", {})
         duration = float(streams.get("duration", fmt.get("duration", 0)))
         return {"duration": duration, "width": int(streams.get("width", 1920)), "height": int(streams.get("height", 1080))}
@@ -130,10 +130,7 @@ def download_youtube(url: str, output_path: Path) -> bool:
         if rc == 0 and output_path.exists() and output_path.stat().st_size > 10000:
             return True
     
-    return False(url: str, output_path: Path) -> bool:
-    cmd = ["yt-dlp", "-f", "best[height<=1080]", "--no-playlist", "-o", str(output_path), "--newline", url]
-    stdout, stderr, rc = run_cmd(cmd, timeout=600)
-    return rc == 0 and output_path.exists() and output_path.stat().st_size > 1000
+    return False
 
 def transcribe_with_whisper(audio_path: Path) -> list:
     if not OPENAI_API_KEY:
@@ -147,8 +144,8 @@ def transcribe_with_whisper(audio_path: Path) -> list:
                 timestamp_granularities=["word"]
             )
         words = []
-        for segment in transcriptsegments:
-            words. append({"text": segment.text.strip(), "start": segment. start, "end": segment.end})
+        for segment in transcript.segments:
+            words.append({"text": segment.text.strip(), "start": segment.start, "end": segment.end})
         return words
     except Exception as e:
         print(f"Whisper API error: {e}")
@@ -263,7 +260,7 @@ def create_short_clip(input_video: Path, output_clip: Path, start: float, end: f
     width = video_info["width"]
     height = video_info["height"]
     target_ratio = 9 / 16
-    current_ratio = width/height
+    current_ratio = width / height
     if current_ratio > target_ratio:
         new_width = int(height * target_ratio)
         new_height = height
