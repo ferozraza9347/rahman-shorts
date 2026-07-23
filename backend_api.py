@@ -110,6 +110,27 @@ def extract_thumbnail(video_path: Path, output_path: Path, time: float = 1.0):
     run_cmd(cmd, timeout=30)
 
 def download_youtube(url: str, output_path: Path) -> bool:
+    """Download YouTube video with multiple fallback strategies"""
+    
+    strategies = [
+        ["yt-dlp", "--cookies-from-browser", "none", "--user-agent", 
+         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36", 
+         "-f", "best[height<=720]", "--no-playlist", "-o", str(output_path), 
+         "--no-check-certificates", "--geo-bypass", "--newline", url],
+        ["yt-dlp", "-f", "best[height<=720]", "--no-playlist", "-o", str(output_path), 
+         "--no-check-certificates", "--newline", url],
+        ["yt-dlp", "-f", "worst[ext=mp4]", "--no-playlist", "-o", str(output_path), 
+         "--no-check-certificates", "--newline", url],
+        ["yt-dlp", "--no-playlist", "-o", str(output_path), 
+         "--no-check-certificates", "--newline", url],
+    ]
+    
+    for i, cmd in enumerate(strategies):
+        stdout, stderr, rc = run_cmd(cmd, timeout=300)
+        if rc == 0 and output_path.exists() and output_path.stat().st_size > 10000:
+            return True
+    
+    return False(url: str, output_path: Path) -> bool:
     cmd = ["yt-dlp", "-f", "best[height<=1080]", "--no-playlist", "-o", str(output_path), "--newline", url]
     stdout, stderr, rc = run_cmd(cmd, timeout=600)
     return rc == 0 and output_path.exists() and output_path.stat().st_size > 1000
