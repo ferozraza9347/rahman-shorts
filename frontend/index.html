@@ -984,20 +984,7 @@ body {
 // Auto-detect API base URL
 // Local: localhost:8000
 // Vercel: reads from env or falls back to Render backend
-const API_BASE = (() => {
-  const host = window.location.host;
-  // Local development
-  if (host.includes('localhost') || host.includes('127.0.0.1')) {
-    return 'http://localhost:8000';
-  }
-  // If frontend is on Vercel, connect to Render backend
-  // CHANGE THIS TO YOUR RENDER BACKEND URL AFTER DEPLOY
-  if (host.includes('vercel.app')) {
-    return 'https://rahman-shorts-api.onrender.com'; // <-- CHANGE THIS AFTER RENDER DEPLOY
-  }
-  // Same domain (e.g., Render serves both)
-  return window.location.origin;
-})();
+const API_BASE = 'https://rahman-shorts.onrender.com';
 
 let currentJobId = null;
 let currentClips = [];
